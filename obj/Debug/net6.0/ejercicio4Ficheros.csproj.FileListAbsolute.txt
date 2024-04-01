@@ -1,0 +1,14 @@
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\bin\Debug\net6.0\ejercicio4Ficheros.exe
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\bin\Debug\net6.0\ejercicio4Ficheros.deps.json
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\bin\Debug\net6.0\ejercicio4Ficheros.runtimeconfig.json
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\bin\Debug\net6.0\ejercicio4Ficheros.dll
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\bin\Debug\net6.0\ejercicio4Ficheros.pdb
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.AssemblyInfoInputs.cache
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.AssemblyInfo.cs
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.csproj.CoreCompileInputs.cache
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.dll
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\refint\ejercicio4Ficheros.dll
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.pdb
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ejercicio4Ficheros.genruntimeconfig.cache
+C:\Users\Profesor\source\repos\ejercicio4Ficheros\obj\Debug\net6.0\ref\ejercicio4Ficheros.dll
