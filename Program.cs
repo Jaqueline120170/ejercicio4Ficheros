@@ -10,78 +10,70 @@ namespace ejercicio4Ficheros
             string rutaArchivo = "C:\\Users\\Profesor\\source\\repos\\ejercicio4Ficheros\\" + fecha + ".txt";
 
 
-            string nombreDeudor = "Nombre del Deudor";
-            string ibanDeudor = "ES0123456789012345678901";
-            decimal monto = 100.50m;
 
-            // Generar el contenido del archivo SEPA
-            string contenidoSEPA = GenerarContenidoSEPA(nombreDeudor, ibanDeudor, monto);
-
-            // Escribir el contenido en el archivo
-            using (StreamWriter writer = new StreamWriter(rutaArchivo, false, Encoding.UTF8))
+            using (StreamWriter sw = new StreamWriter(rutaArchivo))
             {
-                writer.Write(contenidoSEPA);
-            }
+                Console.WriteLine("Añada contenido al archivo");
+                string contenido = Console.ReadLine();
+                sw.Write(contenido);
 
-            Console.WriteLine("Archivo SEPA generado correctamente en: " + rutaArchivo);
 
+                Console.WriteLine("Introduce el numero de la linea en la que deseas añadir el texto");
+                int numeroLinea = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Introduce la posicion en la cual deseas añadir el nuevo texto");
+                int posicion = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Introduce el texto que deseas añadir");
+                string textoNuevo = Console.ReadLine();
 
-            static string GenerarContenidoSEPA(string nombreDeudor, string ibanDeudor, decimal monto)
-            {
-                // Puedes personalizar esta función según las especificaciones SEPA
-                // Aquí se proporciona un ejemplo simple de contenido XML
-
-                StringBuilder contenido = new StringBuilder();
-
-                contenido.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-                contenido.AppendLine("<Documento>");
-                contenido.AppendLine("  <DatosDeudor>");
-                contenido.AppendLine($"    <Nombre>{nombreDeudor}</Nombre>");
-                contenido.AppendLine($"    <IBAN>{ibanDeudor}</IBAN>");
-                contenido.AppendLine("  </DatosDeudor>");
-                contenido.AppendLine($"  <Monto>{monto}</Monto>");
-                contenido.AppendLine("</Documento>");
-
-                return contenido.ToString();
-            }
-            Console.WriteLine("Introduce el numero de la linea en la que deseas añadir el texto");
-            int numeroLinea = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Introduce la posicion en la cual deseas añadir el nuevo texto");
-            int posicion=Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Introduce el texto que deseas añadir");
-            string textoNuevo = Console.ReadLine();
-
-            try
-            {
-                // Leer todas las líneas del archivo
-                string[] lineas = File.ReadAllLines(
-
-                rutaArchivo);
-                string contenidoOriginal = File.ReadAllText(rutaArchivo);
-
-                // Verificar si el número de línea deseado está dentro del rango del archivo
-                if (numeroLinea >= 1 && numeroLinea <= lineas.Length && posicion >= 0 && posicion <= lineas.Length)
+                try
                 {
-                    // Reemplazar el contenido de la línea específica
-                    lineas[numeroLinea - 1] = textoNuevo;
-                    string nuevoContenido = contenidoOriginal.Insert(posicion, textoNuevo);
+                    // Leer todas las líneas del archivo
+                    string[] lineas = File.ReadAllLines(
 
-                    // Sobrescribir el archivo con las líneas actualizadas
-                    File.WriteAllLines(
+        rutaArchivo);
 
-                 rutaArchivo, lineas);
+                    // Verificar si el número de línea deseado está dentro del rango del archivo
+                    if (numeroLinea >= 1 && numeroLinea <= lineas.Length)
+                    {
+                        // Obtener la línea específica
+                        string linea = lineas[numeroLinea - 1];
 
-                    Console.WriteLine("El texto se ha escrito correctamente en la línea especificada.");
+                        // Verificar si la posición deseada está dentro del rango de la línea
+                        if (posicion >= 0 && posicion <= linea.Length)
+                        {
+                            // Insertar el nuevo texto en la posición deseada
+                            string nuevaLinea = linea.Insert(posicion, textoNuevo);
+
+                            // Reemplazar la línea original con la línea modificada
+                            lineas[numeroLinea - 1] = nuevaLinea;
+
+                            // Sobrescribir el archivo con las líneas actualizadas
+                            File.WriteAllLines(
+
+        rutaArchivo, lineas);
+
+                            Console.WriteLine("El texto se ha escrito correctamente en la posición especificada de la línea.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("La posición especificada está fuera del rango de la línea.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("El número de línea especificado está fuera del rango del archivo.");
+                    }
                 }
-                else
+                catch (IOException e)
                 {
-                    Console.WriteLine("El número de línea especificado está fuera del rango del archivo.");
+                    Console.WriteLine("Error al leer/escribir el archivo: " + e.Message);
                 }
             }
-            catch (IOException e)
-            {
-                Console.WriteLine("Error al leer/escribir el archivo: " + e.Message);
-            }
+            
+
+            
+
+           
 
         }
     }

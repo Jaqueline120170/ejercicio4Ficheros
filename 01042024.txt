@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Documento>
   <DatosDeudor>
-jaqueline romero torres
+    <Nombre>Nombre del Deudor</Nombre>
     <IBAN>ES0123456789012345678901</IBAN>
   </DatosDeudor>
   <Monto>100,50</Monto>
