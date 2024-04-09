@@ -9,72 +9,77 @@ namespace ejercicio4Ficheros
             string fecha = DateTime.Today.ToString("ddMMyyyy");
             string rutaArchivo = "C:\\Users\\Profesor\\source\\repos\\ejercicio4Ficheros\\" + fecha + ".txt";
 
-
-
             using (StreamWriter sw = new StreamWriter(rutaArchivo))
             {
                 Console.WriteLine("Añada contenido al archivo");
                 string contenido = Console.ReadLine();
-                sw.Write(contenido);
+                sw.Write(contenido + "\n");
+            }
+            using (StreamWriter sw = new StreamWriter(rutaArchivo, true))
+            {
+                Console.WriteLine("Introduzca nuevo cotenido");
+                string masContenido = Console.ReadLine();
+                sw.WriteLine(masContenido + "\n");
+            }
 
 
-                Console.WriteLine("Introduce el numero de la linea en la que deseas añadir el texto");
-                int numeroLinea = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Introduce la posicion en la cual deseas añadir el nuevo texto");
-                int posicion = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Introduce el texto que deseas añadir");
-                string textoNuevo = Console.ReadLine();
+            Console.WriteLine("Introduce el numero de la linea en la que deseas añadir el texto");
+            int numeroLinea = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Introduce la posicion en la cual deseas añadir el nuevo texto");
+            int posicion = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Introduce el texto que deseas añadir");
+            string textoNuevo = Console.ReadLine();
 
-                try
+            try
+            {
+                // Leer todas las líneas del archivo
+                string[] lineas = File.ReadAllLines(rutaArchivo);
+
+                // Verificar si el número de línea deseado está dentro del rango del archivo
+                if (numeroLinea >= 1 && numeroLinea <= lineas.Length)
                 {
-                    // Leer todas las líneas del archivo
-                    string[] lineas = File.ReadAllLines(
+                    // Obtener la línea específica
+                    string linea = lineas[numeroLinea - 1];
 
-        rutaArchivo);
-
-                    // Verificar si el número de línea deseado está dentro del rango del archivo
-                    if (numeroLinea >= 1 && numeroLinea <= lineas.Length)
+                    // Verificar si la posición deseada está dentro del rango de la línea
+                    if (posicion >= 0 && posicion <= linea.Length)
                     {
-                        // Obtener la línea específica
-                        string linea = lineas[numeroLinea - 1];
+                        // Insertar el nuevo texto en la posición deseada
+                        string nuevaLinea = linea.Insert(posicion, textoNuevo);
 
-                        // Verificar si la posición deseada está dentro del rango de la línea
-                        if (posicion >= 0 && posicion <= linea.Length)
-                        {
-                            // Insertar el nuevo texto en la posición deseada
-                            string nuevaLinea = linea.Insert(posicion, textoNuevo);
+                        // Reemplazar la línea original con la línea modificada
+                        lineas[numeroLinea - 1] = nuevaLinea;
 
-                            // Reemplazar la línea original con la línea modificada
-                            lineas[numeroLinea - 1] = nuevaLinea;
+                        // Sobrescribir el archivo con las líneas actualizadas
+                        File.WriteAllLines(
 
-                            // Sobrescribir el archivo con las líneas actualizadas
-                            File.WriteAllLines(
+    rutaArchivo, lineas);
 
-        rutaArchivo, lineas);
-
-                            Console.WriteLine("El texto se ha escrito correctamente en la posición especificada de la línea.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("La posición especificada está fuera del rango de la línea.");
-                        }
+                        Console.WriteLine("El texto se ha escrito correctamente en la posición especificada de la línea.");
                     }
                     else
                     {
-                        Console.WriteLine("El número de línea especificado está fuera del rango del archivo.");
+                        Console.WriteLine("La posición especificada está fuera del rango de la línea.");
                     }
                 }
-                catch (IOException e)
+                else
                 {
-                    Console.WriteLine("Error al leer/escribir el archivo: " + e.Message);
+                    Console.WriteLine("El número de línea especificado está fuera del rango del archivo.");
                 }
             }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error al leer/escribir el archivo: " + e.Message);
+            }
+
+        }
+    }
+}
             
 
             
 
            
 
-        }
-    }
-}
+        
+    
